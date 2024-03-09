@@ -1,17 +1,11 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:lts-buster-slim'
-            args '-p 3000:3000'
-        }
-    }
-    environment {
-        CI = 'true'
-    }
+  agent any
+    tools {nodejs "node"}
     stages {
-        stage('Build') {
-            steps {
-                sh 'npm install'
+      stage('Build') {
+         steps {
+		    git 'https://github.com/Hari20042002/simple-node-js-react-npm-app.git'
+            sh 'npm install'
             }
         }
         stage('Test') {
